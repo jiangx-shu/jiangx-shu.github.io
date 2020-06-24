@@ -1,595 +1,470 @@
-<!DOCTYPE html>
-<html class="no-js" lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>ZipFolio One Page Responsive Template</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/style.css" type="text/css" rel="stylesheet" media="all">
+<link href="css/flexslider.css" type="text/css" rel="stylesheet" media="screen">
+<link href="css/tipsy.css" type="text/css" rel="stylesheet" media="screen">
+<link href="css/prettyPhoto.css" type="text/css" rel="stylesheet" media="screen">
+<link href="css/jcarousel.css" type="text/css" rel="stylesheet" media="screen" />
+ 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
+<!--<script type="text/javascript" src="js/jquery-1.6.4.min.js"></script>-->
+<script type="text/javascript" src="js/jquery.flexslider-min.js"></script><!--featured slider-->
+<script type="text/javascript" src="js/jquery.tipsy.js"></script><!--tooltip-->
+<script type="text/javascript" src="js/css3-mediaqueries.js"></script><!--mediaqueries-->
+<script type="text/javascript" src="js/jquery.visualNav.min.js"></script><!--navigation-->
+<script type="text/javascript" src="js/jquery.isotope.min.js"></script><!--filterable work-->
+<script type="text/javascript" src="js/jquery.prettyPhoto.js"></script><!--pretty photo-->
+<script type="text/javascript" src="js/jquery.jcarousel.min.js"> </script><!--latest work-->
+<script type="text/javascript">
+	function mycarousel_initCallback(carousel)
+{
+    // Disable autoscrolling if the user clicks the prev or next button.
+    carousel.buttonNext.bind('click', function() {
+        carousel.startAuto(0);
+    });
 
-    <!--- basic page needs
-    ================================================== -->
-    <meta charset="utf-8">
-    <title>Home</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    carousel.buttonPrev.bind('click', function() {
+        carousel.startAuto(0);
+    });
 
-    <!-- mobile specific metas
-    ================================================== -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    // Pause autoscrolling if the user moves with the cursor over the clip.
+    carousel.clip.hover(function() {
+        carousel.stopAuto();
+    }, function() {
+        carousel.startAuto();
+    });
+};
+jQuery(document).ready(function() {
+    jQuery('#mycarousel').jcarousel({
+        auto: 2,
+        wrap: 'last',
+        initCallback: mycarousel_initCallback
+    });
+});
+</script>
 
-    <!-- CSS
-    ================================================== -->
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/vendor.css">
-    <link rel="stylesheet" href="css/main.css">
+<!--BEGIN:Accordion	-->
+<script type="text/javascript" src="js/jquery-ui-1.8.17.custom.min.js"></script><!--accordion-->
+<script type="text/javascript">
+	$(function() {
+		$( "#accordion" ).accordion({
+		header: "h4",
+		autoHeight: false, 
+		});
+	});
+</script>
 
-    <!-- script
-    ================================================== -->
-    <script src="js/modernizr.js"></script>
+<!--BEGIN:mosaic-->
+<link rel="stylesheet" href="css/mosaic.css" type="text/css" media="screen" />
+<script type="text/javascript" src="js/mosaic.1.0.1.js"></script>
+<script type="text/javascript">  
+			jQuery(function($){
+				$('.views').mosaic({
+					opacity		:	0.8			//Opacity for overlay (0-1)
+				});	    
+		    });
+</script>
 
+<!--gallery-->
+<link rel="stylesheet" type="text/css" href="css/elastislide.css" media="screen" />
+<script id="img-wrapper-tmpl" type="text/x-jquery-tmpl">	
+			<div class="rg-image-wrapper">
+				{{if itemsCount > 1}}
+					<div class="rg-image-nav">
+						<a href="#" class="rg-image-nav-prev">Previous Image</a>
+						<a href="#" class="rg-image-nav-next">Next Image</a>
+					</div>
+				{{/if}}
+				<div class="rg-image"></div>
+				<div class="rg-loading"></div>
+				<div class="rg-caption-wrapper">
+					<div class="rg-caption" style="display:none;">
+						<p></p>
+					</div>
+				</div>
+			</div>
+		</script>
+
+<!--tab-->    
+<script src="js/organictabs.jquery.js"></script>
+<script>
+        $(function() {
+            
+            $("#tab").organicTabs({
+                "speed": 200
+            });
+    
+        });
+</script>
+
+<!--elastic slider-->
+<script type="text/javascript" src="js/jquery.eislideshow.js"></script>
+        <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                $('#ei-slider').eislideshow({
+					animation			: 'center',
+					autoplay			: true,
+					slideshow_interval	: 3000,
+					titlesFactor		: 0
+                });
+            });
+        </script>
+
+<!--GOOGLE MAP PLUGIN-->
+<script type="text/javascript">
+			function initialize() {
+				var latlng = new google.maps.LatLng(8.48333, 124.65000);
+				var settings = {
+					zoom: 15,
+					center: latlng,
+					mapTypeControl: true,
+					mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
+					navigationControl: true,
+					navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
+					mapTypeId: google.maps.MapTypeId.ROADMAP};
+				var map = new google.maps.Map(document.getElementById("map_canvas"), settings);
+				
+				var infowindow = new google.maps.InfoWindow({
+					content: contentString
+				});
+				
+				var companyImage = new google.maps.MarkerImage('images/logo.png',
+					new google.maps.Size(100,50),
+					new google.maps.Point(0,0),
+					new google.maps.Point(50,50)
+				);
+
+				var companyShadow = new google.maps.MarkerImage('images/logo_shadow.html',
+					new google.maps.Size(130,50),
+					new google.maps.Point(0,0),
+					new google.maps.Point(65, 50));
+
+				var companyPos = new google.maps.LatLng(8.48333, 124.65000);
+
+				var companyMarker = new google.maps.Marker({
+					position: companyPos,
+					map: map,
+					icon: companyImage,
+					shadow: companyShadow,
+					title:"Høgenhaug",
+					zIndex: 3});
+				
+				var trainImage = new google.maps.MarkerImage('images/train.html',
+					new google.maps.Size(50,50),
+					new google.maps.Point(0,0),
+					new google.maps.Point(50,50)
+				);
+
+				var trainShadow = new google.maps.MarkerImage('images/train_shadow.html',
+					new google.maps.Size(70,50),
+					new google.maps.Point(0,0),
+					new google.maps.Point(60, 50)
+				);
+
+				var trainPos = new google.maps.LatLng(57.0429, 9.9173);
+
+				var trainMarker = new google.maps.Marker({
+					position: trainPos,
+					map: map,
+					icon: trainImage,
+					shadow: trainShadow,
+					title:"Train Station",
+					zIndex: 2
+				});
+
+				var parkingImage = new google.maps.MarkerImage('images/parking.html',
+					new google.maps.Size(50,50),
+					new google.maps.Point(0,0),
+					new google.maps.Point(50,50)
+				);
+
+				var parkingShadow = new google.maps.MarkerImage('images/parking_shadow.html',
+					new google.maps.Size(70,50),
+					new google.maps.Point(0,0),
+					new google.maps.Point(60, 50)
+				);
+
+				var parkingPos = new google.maps.LatLng(57.0437, 9.9147);
+
+				var parkingMarker = new google.maps.Marker({
+					position: parkingPos,
+					map: map,
+					icon: parkingImage,
+					shadow: parkingShadow,
+					title:"Parking Lot",
+					zIndex: 1
+				});
+				
+				google.maps.event.addListener(companyMarker, 'click', function() {
+					infowindow.open(map,companyMarker);
+				});
+			}
+		</script>
+
+
+<!--[if lt IE 9]>
+<script src="js/html5.js" type="text/javascript"></script>
+<![endif]-->
+<script type="text/javascript" src="js/custom.js"></script>
 </head>
 
-<body>
-
-    <!-- preloader
-    ================================================== -->
-    <div id="preloader">
-        <div id="loader" class="dots-fade">
-            <div></div>
-            <div></div>
-            <div></div>
+<body onLoad="initialize()">
+<div id="page">
+  <div id="page_container">
+    <aside id="header">
+      <h1 id="logo"><a class="menu" href="#home">View</a></h1>
+      <nav id="main-nav">
+        <ul>
+          <li><a class="menu" href="#home">基本信息</a></li>
+          <li><a class="menu" href="#field">研究领域</a></li>
+          <li><a class="menu" href="#course">教授课程</a></li>
+          <li><a class="menu" href="#works">科研项目</a></li>
+          <li><a class="menu" href="#thesis">论文专利</a></li>
+          <li><a class="menu" href="#contact">联系我们</a></li>
+        </ul>
+      </nav>
+      <div class="widget">
+        <ul class="social">
+          <li class="dribble"><a href="#" class="tip" title="Dribble"><img src="images/ico_dribble.png" alt="Dribble"></a></li>
+        </ul>
+      </div>
+      <div id="copy-right">
+        <p>&copy; Copyright &copy; 2020.All rights reserved.<a target="_blank" href="http://www.biocenter.shu.edu.cn/">了解更多</a></p>
+      </div>
+    </aside>
+    <section id="main">
+      <div id="home" class="content">
+        <div>
+                <div class="about">
+                    <img src="images/about.jpg" alt="About Image" />
+                    <p>上海大学计算机工程与科学学院副教授，博士生导师，中国计算机学会高级会员，中国计算机学会生物信息学专委会委员，中国计算机学会分布式计算与系统专业委员会常务委员，上海市计算机学会生物信息学专委会秘书长。</p><br>
+                </div>
         </div>
-    </div>
+        <div class="column">
+          <div class="one-half"> <span class="dropcap">1</span>
+            <p><span class="title">Responsive Layout</span></p>
+            <p>Praesent elementum mi vitae orci tempor vel pellentesquesese Quisque dapibus, elit ac porttitor rutrum, libero urna dignissim dui, non cursus felis sem id. eros.</p>
+          </div>
+          <div class="one-half last"> <span class="dropcap">2</span>
+            <p><span class="title">Powered by html5 + CSS3</span></p>
+            <p>Praesent elementum mi vitae orci tempor vel pellentesquesese Quisque dapibus, elit ac porttitor rutrum, libero urna dignissim dui, non cursus felis sem id. eros.</p>
+          </div>
+        </div>
+      </div>
+      <!-- END: .content -->
+      <div id="field" class="content">
+        <div class="page_title">
+          <h2><span>研究领域</span></h2>
+        </div>
+        <h3>About Us - Get contact with our staff &amp; learn more the details of the company background.</h3>
+        <div class="about">
+        	<img src="images/about.jpg" alt="About Image" />
+            <p>Quisque eget ligula nulla, malesuada accumsan tellus. Quisque tincidunt, est ac interdum tempor, erat est molestie lacus, sed convallis lorem elit vitae eros. Maecenas fermentum tincidunt eros, eu convallis turpis dictum in. Proin vulputate ultrices facilisis. Suspendisse lacus ligula, vulputate quis posuere vitae, mattis ac enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. </p><br>
+            <blockquote>
+            	<p>近年来一直从事计算生物学以及医疗健康大数据方面的研究工作，特别是大规模生物网络建模、比对、聚类以及可视化、蛋白质结构预测、大数据分析与并行计算、以及复杂疾病风险预测等相关工作并取得了较好的成果。</p>
+            </blockquote>
 
-    <div id="top" class="s-wrap site-wrapper">
-
-        <!-- site header
-        ================================================== -->
-        <header class="s-header">
-
-            <div class="header__top">
-                <div class="header__logo">
-                    <a class="site-logo" href="index.html">
-                        <img src="images/logo.svg" alt="Homepage">
-                    </a>
-                </div>
-
-                <div class="header__search">
-    
-                    <form role="search" method="get" class="header__search-form" action="#">
-                        <label>
-                            <span class="hide-content">Search for:</span>
-                            <input type="search" class="header__search-field" placeholder="Type Keywords" value="" name="s" title="Search for:" autocomplete="off">
-                        </label>
-                        <input type="submit" class="header__search-submit" value="Search">
-                    </form>
-        
-                    <a href="#0" title="Close Search" class="header__search-close">Close</a>
-        
-                </div>  <!-- end header__search -->
-
-                <!-- toggles -->
-                <a href="#0" class="header__search-trigger"></a>
-                <a href="#0" class="header__menu-toggle"><span>Menu</span></a>
-
-            </div> <!-- end header__top -->
-
-            <nav class="header__nav-wrap">
-
-                <ul class="header__nav">
-                    <li class="current"><a href="index.html" title="">Home</a></li>
-                    <li class="has-children">
-                        <a href="#0" title="">Categories</a>
-                        <ul class="sub-menu">
-                        <li><a href="category.html">Lifestyle</a></li>
-                        <li><a href="category.html">Health</a></li>
-                        <li><a href="category.html">Family</a></li>
-                        <li><a href="category.html">Management</a></li>
-                        <li><a href="category.html">Travel</a></li>
-                        <li><a href="category.html">Work</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-children">
-                        <a href="#0" title="">Blog Posts</a>
-                        <ul class="sub-menu">
-                        <li><a href="single-video.html">Video Post</a></li>
-                        <li><a href="single-audio.html">Audio Post</a></li>
-                        <li><a href="single-gallery.html">Gallery Post</a></li>
-                        <li><a href="single-standard.html">Standard Post</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="styles.html" title="">Styles</a></li>
-                    <li><a href="page-about.html" title="">About</a></li>
-                    <li><a href="page-contact.html" title="">Contact</a></li>
-                </ul> <!-- end header__nav -->
-
-                <ul class="header__social">
-                    <li class="ss-facebook">
-                        <a href="">
-                            <span class="screen-reader-text">Facebook</span>
-                        </a>
-                    </li>
-                    <li class="ss-twitter">
-                        <a href="#0">
-                            <span class="screen-reader-text">Twitter</span>
-                        </a>
-                    </li>
-                    <li class="ss-dribbble">
-                        <a href="#0">
-                            <span class="screen-reader-text">Dribbble</span>
-                        </a>
-                    </li>
-                    <li class="ss-pinterest">
-                        <a href="#0">
-                            <span class="screen-reader-text">Behance</span>
-                        </a>
-                    </li>
-                </ul>
-
-            </nav> <!-- end header__nav-wrap -->
-
-            
-
-        </header> <!-- end s-header -->
-
-        <div class="s-content">
-            
-            <div class="masonry-wrap">
-
-                <div class="masonry">
-    
-                    <div class="grid-sizer"></div>
-    
-                    <article class="masonry__brick entry format-standard animate-this">
-                            
-                        <div class="entry__thumb">
-                            <a href="single-standard.html" class="entry__thumb-link">
-                                <img src="images/thumbs/masonry/woodcraft-600.jpg" 
-                                        srcset="images/thumbs/masonry/woodcraft-600.jpg 1x, images/thumbs/masonry/woodcraft-1200.jpg 2x" alt="">
-                            </a>
-                        </div>
-        
-                        <div class="entry__text">
-                            <div class="entry__header">
-    
-                                <h2 class="entry__title"><a href="single-standard.html">Just a Standard Format Post.</a></h2>
-                                <div class="entry__meta">
-                                    <span class="entry__meta-cat">
-                                        <a href="category.html">Design</a> 
-                                        <a href="category.html">Photography</a>
-                                    </span>
-                                    <span class="entry__meta-date">
-                                        <a href="single-standard.html">Apr 29, 2019</a>
-                                    </span>
-                                </div>
-                                
-                            </div>
-                            <div class="entry__excerpt">
-                                <p>
-                                Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
-                                </p>
-                            </div>
-                        </div>
-        
-                    </article> <!-- end article -->
-    
-                    <article class="masonry__brick entry format-quote animate-this">
-                            
-                        <div class="entry__thumb">
-                            <blockquote>
-                                <p>Good design is making something intelligible and memorable. Great design is making something memorable and meaningful.</p>
-    
-                                <cite>Dieter Rams</cite>
-                            </blockquote>
-                        </div>   
-        
-                    </article> <!-- end article -->
-    
-                    <article class="masonry__brick entry format-standard animate-this">
-                            
-                        <div class="entry__thumb">
-                            <a href="single-standard.html" class="entry__thumb-link">
-                                <img src="images/thumbs/masonry/tulips-600.jpg" 
-                                        srcset="images/thumbs/masonry/tulips-600.jpg 1x, images/thumbs/masonry/tulips-1200.jpg 2x" alt="">
-                            </a>
-                        </div>
-        
-                        <div class="entry__text">
-                            <div class="entry__header">
-                                <h2 class="entry__title"><a href="single-standard.html">10 Interesting Facts About Caffeine.</a></h2>
-                                <div class="entry__meta">
-                                    <span class="entry__meta-cat">
-                                        <a href="category.html">Health</a>
-                                    </span>
-                                    <span class="entry__meta-date">
-                                        <a href="single-standard.html">Apr 28, 2019</a>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="entry__excerpt">
-                                <p>
-                                Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
-                                </p>
-                            </div>
-                        </div>
-        
-                    </article> <!-- end article -->
-                    
-    
-                    <article class="masonry__brick entry format-standard animate-this">
-    
-                        <div class="entry__thumb">
-                            <a href="single-standard.html" class="entry__thumb-link">
-                                <img src="images/thumbs/masonry/dew-600.jpg" 
-                                        srcset="images/thumbs/masonry/dew-600.jpg 1x, images/thumbs/masonry/dew-1200.jpg 2x" alt="">
-                            </a>
-                        </div>
-        
-                        <div class="entry__text">
-                            <div class="entry__header">
-                                <h2 class="entry__title"><a href="single-standard.html">Health Benefits Of Morning Dew.</a></h2>
-                                <div class="entry__meta">
-                                    <span class="entry__meta-cat">
-                                        <a href="category.html">Lifestyle</a>
-                                        <a href="category.html">Health</a>
-                                    </span>
-                                    <span class="entry__meta-date">
-                                        <a href="single-standard.html">Apr 28, 2019</a>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="entry__excerpt">
-                                <p>
-                                Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
-                                </p>
-                            </div>
-                        </div>
-        
-                    </article> <!-- end article -->
-    
-                    <article class="masonry__brick entry format-standard animate-this">
-    
-                            <div class="entry__thumb">
-                                <a href="single-standard.html" class="entry__thumb-link">
-                                    <img src="images/thumbs/masonry/rucksack-600.jpg" 
-                                            srcset="images/thumbs/masonry/rucksack-600.jpg 1x, images/thumbs/masonry/rucksack-1200.jpg 2x" alt="">
-                                </a>
-                            </div>
-            
-                            <div class="entry__text">
-                                <div class="entry__header">
-                                    
-                                    <h2 class="entry__title"><a href="single-standard.html">The Art Of Visual Storytelling.</a></h2>
-                                    
-                                    <div class="entry__meta">
-                                        <span class="entry__meta-cat">
-                                            <a href="category.html">Lifestyle</a>
-                                            <a href="category.html">Work</a>
-                                        </span>
-                                        <span class="entry__meta-date">
-                                            <a href="single-standard.html">Apr 26, 2019</a>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="entry__excerpt">
-                                    <p>
-                                    Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
-                                    </p>
-                                </div>
-                            </div>
-            
-                        </article> <!-- end article -->
-    
-                    <article class="masonry__brick entry format-standard animate-this">
-    
-                        <div class="entry__thumb">
-                            <a href="single-standard.html" class="entry__thumb-link">
-                                <img src="images/thumbs/masonry/jump-600.jpg" 
-                                        srcset="images/thumbs/masonry/jump-600.jpg 1x, images/thumbs/masonry/jump-1200.jpg 2x" alt="">
-                            </a>
-                        </div>
-    
-                        <div class="entry__text">
-                            <div class="entry__header">
-                                
-                                <h2 class="entry__title"><a href="single-standard.html">Create Meaningful Family Moments.</a></h2>
-                                <div class="entry__meta">
-                                    <span class="entry__meta-cat">
-                                        <a href="category.html">Family</a>
-                                        <a href="category.html">Relationship</a>
-                                    </span>
-                                    <span class="entry__meta-date">
-                                        <a href="single-standard.html">Apr 26, 2019</a>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="entry__excerpt">
-                                <p>
-                                Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
-                                </p>
-                            </div>
-                        </div>
-    
-                    </article> <!-- end article -->
-    
-                    <article class="masonry__brick entry format-audio animate-this">
-    
-                        <div class="entry__thumb">
-                            <a href="single-audio.html" class="entry__thumb-link">
-                                <img src="images/thumbs/masonry/guitarist-600.jpg" 
-                                     srcset="images/thumbs/masonry/guitarist-600.jpg 1x, images/thumbs/masonry/guitarist-1200.jpg 2x" alt="">
-                            </a>
-                        </div>
-    
-                        <div class="entry__text">
-                            <div class="entry__header">
-                                <h2 class="entry__title"><a href="single-audio.html">What Your Music Preference Says About You and Your Personality.</a></h2>
-                                <div class="entry__meta">
-                                    <span class="entry__meta-cat">
-                                        <a href="category.html">Lifestyle</a>
-                                    </span>
-                                    <span class="entry__meta-date">
-                                        <a href="single-standard.html">Apr 24, 2019</a>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="entry__excerpt">
-                                <p>
-                                    Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
-                                </p>
-                            </div>
-                        </div>
-    
-                    </article> <!-- end article -->
-    
-                    <article class="masonry__brick entry format-standard animate-this">
-    
-                        <div class="entry__thumb">
-                            <a href="single-standard.html" class="entry__thumb-link">
-                                <img src="images/thumbs/masonry/beetle-600.jpg" 
-                                        srcset="images/thumbs/masonry/beetle-600.jpg 1x, images/thumbs/masonry/beetle-1200.jpg 2x" alt="">
-                            </a>
-                        </div>
-    
-                        <div class="entry__text">
-                            <div class="entry__header">
-                                <h2 class="entry__title"><a href="single-standard.html">Throwback To The Good Old Days.</a></h2>
-                                <div class="entry__meta">
-                                    <span class="entry__meta-cat">
-                                        <a href="category.html">Lifestyle</a>
-                                    </span>
-                                    <span class="entry__meta-date">
-                                        <a href="single-standard.html">Apr 24, 2019</a>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="entry__excerpt">
-                                <p>
-                                Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
-                                </p>
-                            </div>
-                        </div>
-    
-                    </article> <!-- end article -->
-    
-                    <article class="masonry__brick entry format-video animate-this">
-                            
-                        <div class="entry__thumb video-image">
-                            <a href="" data-lity class="entry__thumb-link">
-                                <img src="images/thumbs/masonry/cookies-600.jpg" 
-                                     srcset="images/thumbs/masonry/cookies-600.jpg 1x, images/thumbs/masonry/cookies-1200.jpg 2x" alt="">
-                            </a>
-                        </div>
-        
-                        <div class="entry__text">
-                            <div class="entry__header">
-                                <h2 class="entry__title"><a href="single-video.html">No Sugar Oatmeal Cookies.</a></h2>
-                                <div class="entry__meta">
-                                    <span class="entry__meta-cat">
-                                        <a href="category.html">Lifestyle</a>
-                                        <a href="category.html">Health</a>
-                                    </span>
-                                    <span class="entry__meta-date">
-                                        <a href="single-standard.html">Apr 24, 2019</a>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="entry__excerpt">
-                                <p>
-                                Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
-                                </p>
-                            </div>
-                        </div>
-        
-                    </article> <!-- end article -->
-    
-                    <article class="masonry__brick entry format-standard animate-this">
-    
-                        <div class="entry__thumb">
-                            <a href="single-standard.html" class="entry__thumb-link">
-                                <img src="images/thumbs/masonry/lamp-600.jpg" 
-                                        srcset="images/thumbs/masonry/lamp-600.jpg 1x, images/thumbs/masonry/lamp-1200.jpg 2x" alt="">
-                            </a>
-                        </div>
-    
-                        <div class="entry__text">
-                            <div class="entry__header">
-                                <h2 class="entry__title"><a href="single-standard.html">Another Standard Format Post.</a></h2>
-                                <div class="entry__meta">
-                                    <span class="entry__meta-cat">
-                                        <a href="category.html">Design</a>
-                                        <a href="category.html">Photography</a>
-                                    </span>
-                                    <span class="entry__meta-date">
-                                        <a href="single-standard.html">Apr 24, 2019</a>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="entry__excerpt">
-                                <p>
-                                Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
-                                </p>
-                            </div>
-                        </div>
-    
-                    </article> <!-- end article -->
-    
-                    <article class="masonry__brick entry format-link animate-this">
-                        
-                        <div class="entry__thumb">
-                            <div class="link-wrap">
-                                <h2>Powerful web & Wordpress hosting. Guaranteed. Starting at $2.59/mo!</h2>
-                                <cite>
-                                    <a target="_blank" href="#">http://sc.chinaz.com</a>
-                                </cite>
-                            </div>
-                        </div>
-                        
-                    </article> <!-- end article -->
-    
-                    <article class="masonry__brick entry format-gallery animate-this">
-                            
-                        <div class="entry__thumb slider">
-                            <div class="slider__slides">
-                                <div class="slider__slide">
-                                    <img src="images/thumbs/masonry/gallery/slide-1-600.jpg" 
-                                         srcset="images/thumbs/masonry/gallery/slide-1-600.jpg 1x, images/thumbs/masonry/gallery/slide-1-1200.jpg 2x" alt=""> 
-                                </div>
-                                <div class="slider__slide">
-                                    <img src="images/thumbs/masonry/gallery/slide-2-600.jpg" 
-                                         srcset="images/thumbs/masonry/gallery/slide-2-600.jpg 1x, images/thumbs/masonry/gallery/slide-2-1200.jpg 2x" alt=""> 
-                                </div>
-                                <div class="slider__slide">
-                                    <img src="images/thumbs/masonry/gallery/slide-3-600.jpg" 
-                                         srcset="images/thumbs/masonry/gallery/slide-3-600.jpg 1x, images/thumbs/masonry/gallery/slide-3-1200.jpg 2x" alt="">  
-                                </div>
-                            </div>
-                        </div>
-        
-                        <div class="entry__text">
-                            <div class="entry__header">
-                                <h2 class="entry__title"><a href="single-gallery.html">The Best Tropical Leaves Images.</a></h2>
-                                <div class="entry__meta">
-                                    <span class="entry__meta-cat">
-                                        <a href="category.html">Vacation</a>
-                                    </span>
-                                    <span class="entry__meta-date">
-                                        <a href="single-standard.html">Apr 23, 2019</a>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="entry__excerpt">
-                                <p>
-                                    Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
-                                </p>
-                            </div>
-                        </div>
-        
-                    </article> <!-- end article -->
-    
-                    <article class="masonry__brick entry format-standard animate-this">
-    
-                        <div class="entry__thumb">
-                            <a href="single-standard.html" class="entry__thumb-link">
-                                <img src="images/thumbs/masonry/walk-600.jpg" 
-                                        srcset="images/thumbs/masonry/walk-600.jpg 1x, images/thumbs/masonry/walk-1200.jpg 2x" alt="">
-                            </a>
-                        </div>
-    
-                        <div class="entry__text">
-                            <div class="entry__header">
-                                <h2 class="entry__title"><a href="single-standard.html">Using Repetition and Patterns in Photography.</a></h2>
-                                <div class="entry__meta">
-                                    <span class="entry__meta-cat">
-                                        <a href="category.html">Work</a>
-                                    </span>
-                                    <span class="entry__meta-date">
-                                        <a href="single-standard.html">Apr 23, 2019</a>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="entry__excerpt">
-                                <p>
-                                    Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
-                                </p>
-                            </div>
-                        </div>
-    
-                    </article> <!-- end article -->
-    
-                    <article class="masonry__brick entry format-standard animate-this">
-    
-                        <div class="entry__thumb">
-                            <a href="single-standard.html" class="entry__thumb-link">
-                                <img src="images/thumbs/masonry/real-600.jpg" 
-                                        srcset="images/thumbs/masonry/real-600.jpg 1x, images/thumbs/masonry/real-1200.jpg 2x" alt="">
-                            </a>
-                        </div>
-    
-                        <div class="entry__text">
-                            <div class="entry__header">
-                                <h2 class="entry__title"><a href="single-standard.html">How We Live Is What Makes Us Real.</a></h2>
-                                <div class="entry__meta">
-                                    <span class="entry__meta-cat">
-                                        <a href="category.html">Travel</a>
-                                        <a href="category.html">Vacation</a>
-                                    </span>
-                                    <span class="entry__meta-date">
-                                        <a href="single-standard.html">Apr 23, 2019</a>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="entry__excerpt">
-                                <p>
-                                    Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
-                                </p>
-                            </div>
-                        </div>
-    
-                    </article> <!-- end article -->
-    
-                </div> <!-- end masonry -->
-
-            </div> <!-- end masonry-wrap -->
-
-            <div class="row">
-                <div class="column large-full">
-                    <nav class="pgn">
-                        <ul>
-                            <li><a class="pgn__prev" href="#0">Prev</a></li>
-                            <li><a class="pgn__num" href="#0">1</a></li>
-                            <li><span class="pgn__num current">2</span></li>
-                            <li><a class="pgn__num" href="#0">3</a></li>
-                            <li><a class="pgn__num" href="#0">4</a></li>
-                            <li><a class="pgn__num" href="#0">5</a></li>
-                            <li><span class="pgn__num dots">…</span></li>
-                            <li><a class="pgn__num" href="#0">8</a></li>
-                            <li><a class="pgn__next" href="#0">Next</a></li>
-                        </ul>
-                    </nav>
-                </div>
+            <h4>Get contact with our team!</h4>
+            <div class="one-third last">
+            	<img src="images/partner-1.jpg" alt="Louie Jie Mahusay" />
+                <h3>Louie Jie Mahusay<br><span>CEO &amp; Creative Director</span></h3>
+                <p>Quisque eget ligula nulla, malesuada accumsan tellus. Quisque tincidunt, est ac interdum tempor, erat est molestie lacus</p>
             </div>
-
-        </div> <!-- end s-content -->
-
-
-        <!-- footer
-        ================================================== -->
-        <footer class="s-footer">
-            <div class="row">
-                <div class="column large-full footer__content">
-                    <div class="footer__copyright">Copyright &copy; 2019.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></div>
-                </div>
+            <div class="one-third">
+            	<img src="images/partner-2.jpg" alt="Louie Jie Mahusay" />
+                <h3>John Doe<br><span>Web Designer</span></h3>
+                <p>Quisque eget ligula nulla, malesuada accumsan tellus. Quisque tincidunt, est ac interdum tempor, erat est molestie lacus</p>
             </div>
-
-            <div class="go-top">
-                <a class="smoothscroll" title="Back to Top" href="#top"></a>
+            <div class="one-third">
+            	<img src="images/partner-3.jpg" alt="Louie Jie Mahusay" />
+                <h3>James Smith<br><span>Web Programmer</span></h3>
+                <p>Quisque eget ligula nulla, malesuada accumsan tellus. Quisque tincidunt, est ac interdum tempor, erat est molestie lacus</p>
             </div>
-        </footer>
+        </div>
+      </div>
+      <!-- END: .content -->
+      <div id="course" class="content">
+        <div class="page_title">
+          <h2><span>教授课程</span></h2>
+        </div>
+        <h3>Our Services - This is the services area were you can see featured services here.!</h3>
+          <div id="tab">
+              <div class="list-wrap">
+                  <div id="r_blog">
+                      <div class="third">
+                          <img src="images/flickr/flickr-1.jpg" alt="" />
+                          <span><a href="#">离散数学</a></span><br>
+                      </div>
+                      <div class="third">
+                          <img src="images/flickr/flickr-2.jpg" alt="" />
+                          <span><a href="#">生物信息学</a></span><br>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        <h4>Featured Services</h4>
+        <div class="services">
+        	<div class="one-third last">
+            	<img src="images/services-1.gif" alt="services" />
+                <h4>PSD Design</h4>
+                <p>Donec luctus auctor felis eu pellentesque. Donec sit amet ipsum velit, in iaculis risus.Praesent non velit sed velit convallis pellentesque.</p>
+            </div>
+            <div class="one-third">
+            	<img src="images/services-2.gif" alt="services" />
+                <h4>Web Marketing</h4>
+                <p>Donec luctus auctor felis eu pellentesque. Donec sit amet ipsum velit, in iaculis risus.Praesent non velit sed velit convallis pellentesque.</p>
+            </div>
+            <div class="one-third">
+            	<img src="images/services-3.gif" alt="services" />
+                <h4>System Security</h4>
+                <p>Donec luctus auctor felis eu pellentesque. Donec sit amet ipsum velit, in iaculis risus.Praesent non velit sed velit convallis pellentesque.</p>
+            </div>	
+        </div>
+        <h4>Our Services</h4>
+        <div id="accordion">
+           <div class="first">
+               <h4><a href="#">Web Design</a></h4>
+               <div><img src="images/services-web-design.gif" alt="Web Design"/><p>Quisque eget ligula nulla, malesuada accumsan tellus. Quisque tincidunt, est ac interdum tempor, erat est molestie lacus, sed convallis lorem elit vitae eros. Maecenas fermentum tincidunt eros, eu convallis turpis dictum in. Proin vulputate ultrices facilisis. Suspendisse lacus ligula, vulputate quis posuere vitae, mattis ac enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p></div>
+           </div>
+           <div class="first">
+               <h4><a href="#">Help &amp; Support</a></h4>
+               <div><img src="images/services-help-suppot.gif" alt="Help &amp; Support" /><p>Quisque eget ligula nulla, malesuada accumsan tellus. Quisque tincidunt, est ac interdum tempor, erat est molestie lacus, sed convallis lorem elit vitae eros. Maecenas fermentum tincidunt eros, eu convallis turpis dictum in. Proin vulputate ultrices facilisis. Suspendisse lacus ligula, vulputate quis posuere vitae, mattis ac enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p></div>
+           </div>
+           <div class="first">
+               <h4><a href="#">离散数学</a></h4>
+               <div><img src="images/services-video-editing.gif"  alt="Video editing"/><p>Quisque eget ligula nulla, malesuada accumsan tellus. Quisque tincidunt, est ac interdum tempor, erat est molestie lacus, sed convallis lorem elit vitae eros. Maecenas fermentum tincidunt eros, eu convallis turpis dictum in. Proin vulputate ultrices facilisis. Suspendisse lacus ligula, vulputate quis posuere vitae, mattis ac enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p></div>
+           </div>
+           <div class="first">
+               <h4><a href="#">生物信息学</a></h4>
+               <div><img src="images/services-web-marketing.gif" alt="Web Marketing" /><p>Quisque eget ligula nulla, malesuada accumsan tellus. Quisque tincidunt, est ac interdum tempor, erat est molestie lacus, sed convallis lorem elit vitae eros. Maecenas fermentum tincidunt eros, eu convallis turpis dictum in. Proin vulputate ultrices facilisis. Suspendisse lacus ligula, vulputate quis posuere vitae, mattis ac enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p></div>
+           </div>
+        </div>        
+      </div>
+      <!-- END: .content -->
+      <div id="works" class="content">
+        <div class="page_title">
+          <h2><span>科研项目</span></h2>
+        </div>
+        <h3>My work - The Collection of Website and Template Design</h3>
+          <div class="wrapper">
+              <div id="ei-slider" class="ei-slider">
+                  <ul class="ei-slider-large">
+                      <li>
+                          <img src="images/featured/slide_1.jpg" alt="image06"/>
+                      </li>
+                      <li>
+                          <img src="images/featured/slide_2.jpg" alt="image01" />
+                      </li>
+                      <li>
+                          <img src="images/featured/slide_3.jpg" alt="image02" />
+                      </li>
+                  </ul><!-- ei-slider-large -->
+                  <ul class="ei-slider-thumbs">
+                      <li class="ei-slider-element">Current</li>
+                      <li><a href="#">Slide 6</a><img src="images/featured/slide_1.jpg" alt="thumb06" /></li>
+                      <li><a href="#">Slide 1</a><img src="images/featured/slide_2.jpg" alt="thumb01" /></li>
+                      <li><a href="#">Slide 2</a><img src="images/featured/slide_3.jpg" alt="thumb02" /></li>
+                  </ul><!-- ei-slider-thumbs -->
+              </div><!-- ei-slider -->
+          </div><!-- wrapper -->
+      </div>
+      <!-- END: .content -->
+      
+      <div id="thesis" class="content">
+        <div class="page_title">
+          <h2><span>论文专利</span></h2>
+        </div>
+          <ul>
+              <li>Jiang Xie, Dongfang Lu, Jiaxin Li, Jiao Wang, Yanhui Li, Qing Nie. Kernel differential subgraph reveals dynamic changes in biomolecular networks, Journal of Bioinformatics and Computational Biology, 2018, 16 (1): 1750027: 1-29</li>
+              <li>Jiang Xie, Chaojuan Xiang, Jin Ma, Jun Tan, Tieqiao Wen, Jinzhi Lei, Qing Nie. An Adaptive Hybrid Algorithm for Global Network Alignment. IEEE/ACM Transactions on Computational Biology and Bioinformatics, 2016, 13(3): 483-493.</li>
+              <li>Jiang Xie, Chaojuan Xiang, Junfu Xu, Jiao Wang, Wu Zhang. Discovery of Functional Module Alignment. Neurocomputing, 2016, 206: 19-27</li>
+              <li>Shiqing Zhang, Jiang Xie, Ying Xia, Shu Yu, Zhili Gu, Ruili Feng, Guanghong Luo, Dong Wang, Kai Wang, Meng Jiang, Xiao Cheng, Hai Huang, Wu Zhang, Tieqiao Wen. LK6/Mnk2a is a new kinase of alpha synuclein phosphorylation mediating neurodegeneration. Scientific Reports, 5, article number: 12564, 2015</li>
+              <li>Jiao Wang, Qian Wang, Dongfang Lu, Fangfang Zhou, Dong Wang, Ruili Feng, Kai Wang, Robert Molday, Jiang Xie*, Tieqiao Wen, A biosystems approach to identify the molecular signaling mechanisms of TMEM30A during tumor migration, Plos One, 2017, 12(6) :e0179900.</li>
+              <li>Jiao Wang, Qian Li, Yanyan Kong, Fangfang Zhou, Jie Li, Weihao Li, Kai Wang, Ting Wu, Yihui Guan, Jiang Xie*, Biosystems Study of the Molecular Networks Underlying Hippocampal Aging Progression and Anti-aging Treatment in Mice, Frontiers in Aging Neuroscience, 2017, 9.</li>
+              <li>Minchao Wang, Wu Zhang, Wang Ding, Dongbo Dai, Huiran Zhang, Hao Xie, Luonan Chen, Yike Guo,Jiang Xie*. Parallel Clustering Algorithm for Large-scale Biological Data Sets. PLoS ONE，9(4): e91315, 2014</li>
+              <li>Wang Ding, Jiang Xie, Dongbo Dai, Huiran Zhang, Hao Xie, Wu Zhang. CNNcon: Improved Protein Contact Maps Prediction Using Cascaded Neural Networks. PLoS ONE，8 (4): e61533，2013</li>
+              <li>Jiang Xie, Zhonghua Zhou, Kai Lu, Luonan Chen, Wu Zhang. Visualization of Biomolecular Networks’ Comparison on Cytoscape. Tsinghua Science and Technology，18 (5): 515-521, 2013</li>
+              <li>Shangyun Xia, Jiang Xie, Dongbo Dai,Huiran Zhang,Qing Nie,Shigeo Kawata, Wu Zhang. KVM Combined with Hadoop Application based-on CPSE-Bio. Journal of Next Generation Information Technology，4 (3): 160-166, 2013</li>
+              <li>Jiang Xie, Wu Zhang, Shihua Zhang, Tieqiao Wen. A Parallel Method for Querying Target Subnetwork in a Biomolecular Network. International Journal of Numerical Analysis & Modeling，9 (2): 326-337, 2012</li>
+              <li>Shigeo Kawata, Takashi Ishihara, Daisuke Barada, Wu Zhang, Jiang Xie, Hitohide Usami, Takayuki Teramoto, Masami Matsumoto, Yasuhiko Manabe, Yoshikazu Hayase, Tae Whan Kim. Uncertainty Management in Computer Assisted Problem Solving Environment (PSE) for Scientific Computing. Journal of Convergence Information Technology，8 (6): 449-456, 2013</li>
+              <li>文铁桥，顾知立，俞淑，谢江. 一种与帕金森病相关的果蝇源蛋白CG2233及其应用. 专利申请号：200810037700.2</li>
+              <li>谢江，谭军，马进，张武，文铁桥。基于专家知识与拓扑相似的邻居优先生物分子子网搜索方法.专利申请号：201210358669.9</li>
+              <li>张武，张律文，张轶雯，宋安平，谢江，封卫兵. 人工基因调控网络的模拟方法. 专利号: ZL 200910199849.5</li>
+              <li>张武，张律文，肖梅，谢江，宋安平，何冰. 一种逐步回归基因调控网络的推断方法. 专利号: ZL 200910199850.8</li>
+          </ul>
+        <!-- rg-gallery --> 
+      </div>
+      <!-- END: .content -->
+      <div id="contact" class="content">
 
-    </div> <!-- end s-wrap -->
+        <div class="page_title">
+          <h2><span>联系我们</span></h2>
+        </div>
+          <img src="images/contact-us.jpg" alt="" />
+        <h3>Get contact with our team!</h3>
+        <div class="contactinfo">
+            地址: 上海市宝山区南陈路333号上海大学计算机工程与科学学院1013室<br>
+            电话: +021-66135539<br>
+            邮箱: <a href="mailto:info@domainname.com">jiangx@shu.edu.cn</a></p>
+        </div>
 
+      </div>
+      <!-- END: .content -->
+      <div class="copyright"><p>&copy; Copyright &copy; 2013.Company name All rights reserved.<a target="_blank" href="http://www.freemoban.com/">www.freemoban.com</a></p></div>
+    </section>
+  </div>
+</div>
+<!--gallery responsive-->
+<script type="text/javascript" src="js/jquery.tmpl.min.js"></script> 
+<script type="text/javascript" src="js/jquery.easing.1.3.js"></script> 
+<script type="text/javascript" src="js/jquery.elastislide.js"></script> 
+<script type="text/javascript" src="js/gallery.js"></script>
 
-    <!-- Java Script
-    ================================================== -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+$("#ajax-contact-form").submit(function(){
+
+var str = $(this).serialize();
+
+   $.ajax({
+   type: "POST",
+   url: "contact.php",
+   data: str,
+   success: function(msg){
+    
+$("#note").ajaxComplete(function(event, request, settings){
+
+if(msg == 'OK') // Message Sent? Show the 'Thank You' message and hide the form
+{
+result = '<div class="notification_ok">Your message has been sent. Thank you!</div>';
+$("#fields").hide();
+}
+else
+{
+result = '<ul class="error">'+msg+'</ul>';
+}
+
+$(this).html(result);
+
+});
+
+}
+
+ });
+
+return false;
+
+});
+
+});
+</script> 
+
 
 </body>
+</html>
