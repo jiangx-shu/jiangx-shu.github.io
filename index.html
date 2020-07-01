@@ -1,431 +1,259 @@
-<!DOCTYPE HTML>
-<html>
+
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie7" lang="zh"><![endif]-->
+<!--[if IE 7]> <html class="no-js ie7" lang="zh"> <![endif]-->
+<!--[if IE 8]> <html class="no-js ie8" lang="zh"> <![endif]-->
+<!--[if IE 9]> <html class="no-js ie9" lang="zh"> <![endif]-->
+<!--[if IE 10]><html class="no-js ie ie10 lt-ie11" lang="zh"><![endif]-->
+<!--[if !IE]><!-->
+<html class="no-js" lang="zh">
+<!--<![endif]-->
 <head>
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>个人主页</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="css/style.css" type="text/css" rel="stylesheet" media="all">
-<link href="css/flexslider.css" type="text/css" rel="stylesheet" media="screen">
-<link href="css/tipsy.css" type="text/css" rel="stylesheet" media="screen">
-<link href="css/prettyPhoto.css" type="text/css" rel="stylesheet" media="screen">
-<link href="css/jcarousel.css" type="text/css" rel="stylesheet" media="screen" />
- 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
-<!--<script type="text/javascript" src="js/jquery-1.6.4.min.js"></script>-->
-<script type="text/javascript" src="js/jquery.flexslider-min.js"></script><!--featured slider-->
-<script type="text/javascript" src="js/jquery.tipsy.js"></script><!--tooltip-->
-<script type="text/javascript" src="js/css3-mediaqueries.js"></script><!--mediaqueries-->
-<script type="text/javascript" src="js/jquery.visualNav.min.js"></script><!--navigation-->
-<script type="text/javascript" src="js/jquery.isotope.min.js"></script><!--filterable work-->
-<script type="text/javascript" src="js/jquery.prettyPhoto.js"></script><!--pretty photo-->
-<script type="text/javascript" src="js/jquery.jcarousel.min.js"> </script><!--latest work-->
-<script type="text/javascript">
-	function mycarousel_initCallback(carousel)
-{
-    // Disable autoscrolling if the user clicks the prev or next button.
-    carousel.buttonNext.bind('click', function() {
-        carousel.startAuto(0);
-    });
+    <title>个人主页</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--    <base href="/">-->
+    <!-- // base css -->
+    <link href="resources/stylelib/base.css" rel="stylesheet"
+          type="text/css" />
 
-    carousel.buttonPrev.bind('click', function() {
-        carousel.startAuto(0);
-    });
+    <!-- // plugins css -->
 
-    // Pause autoscrolling if the user moves with the cursor over the clip.
-    carousel.clip.hover(function() {
-        carousel.stopAuto();
-    }, function() {
-        carousel.startAuto();
-    });
-};
-jQuery(document).ready(function() {
-    jQuery('#mycarousel').jcarousel({
-        auto: 2,
-        wrap: 'last',
-        initCallback: mycarousel_initCallback
-    });
-});
-</script>
-
-<!--BEGIN:Accordion	-->
-<script type="text/javascript" src="js/jquery-ui-1.8.17.custom.min.js"></script><!--accordion-->
-<script type="text/javascript">
-	$(function() {
-		$( "#accordion" ).accordion({
-		header: "h4",
-		autoHeight: false, 
-		});
-	});
-</script>
-
-<!--BEGIN:mosaic-->
-<link rel="stylesheet" href="css/mosaic.css" type="text/css" media="screen" />
-<script type="text/javascript" src="js/mosaic.1.0.1.js"></script>
-<script type="text/javascript">  
-			jQuery(function($){
-				$('.views').mosaic({
-					opacity		:	0.8			//Opacity for overlay (0-1)
-				});	    
-		    });
-</script>
-
-<!--gallery-->
-<link rel="stylesheet" type="text/css" href="css/elastislide.css" media="screen" />
-<script id="img-wrapper-tmpl" type="text/x-jquery-tmpl">	
-			<div class="rg-image-wrapper">
-				{{if itemsCount > 1}}
-					<div class="rg-image-nav">
-						<a href="#" class="rg-image-nav-prev">Previous Image</a>
-						<a href="#" class="rg-image-nav-next">Next Image</a>
-					</div>
-				{{/if}}
-				<div class="rg-image"></div>
-				<div class="rg-loading"></div>
-				<div class="rg-caption-wrapper">
-					<div class="rg-caption" style="display:none;">
-						<p></p>
-					</div>
-				</div>
-			</div>
-		</script>
-
-<!--tab-->    
-<script src="js/organictabs.jquery.js"></script>
-<script>
-        $(function() {
-            
-            $("#tab").organicTabs({
-                "speed": 200
-            });
-    
-        });
-</script>
-
-<!--elastic slider-->
-<script type="text/javascript" src="js/jquery.eislideshow.js"></script>
-        <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-        <script type="text/javascript">
-            $(function() {
-                $('#ei-slider').eislideshow({
-					animation			: 'center',
-					autoplay			: true,
-					slideshow_interval	: 3000,
-					titlesFactor		: 0
-                });
-            });
-        </script>
-
-<!--GOOGLE MAP PLUGIN-->
-<script type="text/javascript">
-			function initialize() {
-				var latlng = new google.maps.LatLng(8.48333, 124.65000);
-				var settings = {
-					zoom: 15,
-					center: latlng,
-					mapTypeControl: true,
-					mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
-					navigationControl: true,
-					navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
-					mapTypeId: google.maps.MapTypeId.ROADMAP};
-				var map = new google.maps.Map(document.getElementById("map_canvas"), settings);
-				
-				var infowindow = new google.maps.InfoWindow({
-					content: contentString
-				});
-				
-				var companyImage = new google.maps.MarkerImage('images/logo.png',
-					new google.maps.Size(100,50),
-					new google.maps.Point(0,0),
-					new google.maps.Point(50,50)
-				);
-
-				var companyShadow = new google.maps.MarkerImage('images/logo_shadow.html',
-					new google.maps.Size(130,50),
-					new google.maps.Point(0,0),
-					new google.maps.Point(65, 50));
-
-				var companyPos = new google.maps.LatLng(8.48333, 124.65000);
-
-				var companyMarker = new google.maps.Marker({
-					position: companyPos,
-					map: map,
-					icon: companyImage,
-					shadow: companyShadow,
-					title:"Høgenhaug",
-					zIndex: 3});
-				
-				var trainImage = new google.maps.MarkerImage('images/train.html',
-					new google.maps.Size(50,50),
-					new google.maps.Point(0,0),
-					new google.maps.Point(50,50)
-				);
-
-				var trainShadow = new google.maps.MarkerImage('images/train_shadow.html',
-					new google.maps.Size(70,50),
-					new google.maps.Point(0,0),
-					new google.maps.Point(60, 50)
-				);
-
-				var trainPos = new google.maps.LatLng(57.0429, 9.9173);
-
-				var trainMarker = new google.maps.Marker({
-					position: trainPos,
-					map: map,
-					icon: trainImage,
-					shadow: trainShadow,
-					title:"Train Station",
-					zIndex: 2
-				});
-
-				var parkingImage = new google.maps.MarkerImage('images/parking.html',
-					new google.maps.Size(50,50),
-					new google.maps.Point(0,0),
-					new google.maps.Point(50,50)
-				);
-
-				var parkingShadow = new google.maps.MarkerImage('images/parking_shadow.html',
-					new google.maps.Size(70,50),
-					new google.maps.Point(0,0),
-					new google.maps.Point(60, 50)
-				);
-
-				var parkingPos = new google.maps.LatLng(57.0437, 9.9147);
-
-				var parkingMarker = new google.maps.Marker({
-					position: parkingPos,
-					map: map,
-					icon: parkingImage,
-					shadow: parkingShadow,
-					title:"Parking Lot",
-					zIndex: 1
-				});
-				
-				google.maps.event.addListener(companyMarker, 'click', function() {
-					infowindow.open(map,companyMarker);
-				});
-			}
-		</script>
-
-
-<!--[if lt IE 9]>
-<script src="js/html5.js" type="text/javascript"></script>
-<![endif]-->
-<script type="text/javascript" src="js/custom.js"></script>
+    <!-- // theme css -->
+    <link href="resources/stylelib/theme_default/myzone.css"
+          rel="stylesheet" type="text/css" />
+    <!-- // head js -->
+    <script src="resources/stylelib/plugins/modernizr.js"></script>
 </head>
-
-<body onLoad="initialize()">
-<div id="page">
-  <div id="page_container">
-    <aside id="header">
-        <img src="images/log.png" alt="About Image" width="200"/>
-        <img src="images/6.png" alt="About Image" height="100" width="100"/>
-        <h2>谢江</h2>
-        <br>
-      <nav id="main-nav">
-        <ul>
-          <li><a class="menu" href="#home">基本信息</a></li>
-          <li><a class="menu" href="#field">研究领域</a></li>
-          <li><a class="menu" href="#course">教授课程</a></li>
-          <li><a class="menu" href="#works">科研项目</a></li>
-          <li><a class="menu" href="#thesis">论文专利</a></li>
-          <li><a class="menu" href="#contact">联系我们</a></li>
-        </ul>
-      </nav>
-
-      <div id="copy-right">
-        <p>&copy; Copyright &copy; 2020.All rights reserved.<a target="_blank" href="http://www.biocenter.shu.edu.cn/">了解更多</a></p>
-      </div>
-    </aside>
-    <section id="main">
-      <div id="home" class="content">
-          <div class="page_title">
-              <h2><span>基本信息</span></h2>
-          </div>
-        <div>
-                <div class="about">
-                    <img src="images/3.jpeg" alt="About Image" height="200" width="200"/>
-                    <p>上海大学计算机工程与科学学院副教授，博士生导师，中国计算机学会高级会员，中国计算机学会生物信息学专委会委员，中国计算机学会分布式计算与系统专业委员会常务委员，上海市计算机学会生物信息学专委会秘书长。</p><br>
-                </div>
-        </div>
-          <div class="about">
-              <blockquote>
-                  <p>谢江是国家自然科学基金面上项目主持人，上海市自然科学基金主持人，是科技部重大研发计划重点专项子课题责任人，国家自然科学基金重大研究计划培育项目和上海市科委重点资助项目课题骨干，在包括IEEE Transactions on Computational Biology and Bioinformatics, Scientific Reports, Biomaterials等期刊和IEEE E-Science、IEEE/WIC/ACM国际重要学术会议上发表了一系列论文（近十年以来以第一/通讯作者发表49篇），获得发明专利3项，软件著作权3项。课题组已有四名国家级奖学金获得者，一名光华奖学金获得者和多名上海市优秀毕业生。</p>
-              </blockquote>
-          </div>
-      </div>
-      <!-- END: .content -->
-      <div id="field" class="content">
-        <div class="page_title">
-          <h2><span>研究领域</span></h2>
-        </div>
-          <div>
-              <p>近年来一直从事计算生物学以及医疗健康大数据方面的研究工作，特别是大规模生物网络建模、比对、聚类以及可视化、蛋白质结构预测、大数据分析与并行计算、以及复杂疾病风险预测等相关工作并取得了较好的成果。</p>
-          </div>
-      </div>
-      <!-- END: .content -->
-      <div id="course" class="content">
-        <div class="page_title">
-          <h2><span>教授课程</span></h2>
-        </div>
-        <div id="tab">
-              <div class="list-wrap">
-                  <div id="r_blog">
-                      <div class="third">
-                          <img src="images/1.jpeg" height="100" width="100" />
-                          <span><a href="#">离散数学</a></span><br>
-                      </div>
-                      <div class="third">
-                          <img src="images/2.jpg" height="100" width="100" />
-                          <span><a href="#">生物信息学</a></span><br>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <!-- END: .content -->
-      <div id="works" class="content">
-        <div class="page_title">
-          <h2><span>科研项目</span></h2>
-        </div>
-        <h3>部分科研项目：</h3>
-          <table id="pricetable">
-              <thead>
-              <tr>
-                  <th class="side">项目名称</th>
-                  <th class="choiceA">开题时间</th>
-                  <th class="choiceB">结题时间</th>
-                  <th class="choiceC on">课题来源</th>
-                  <th class="choiceD">承担部分</th>
-              </tr>
-              </thead>
-
-              <tbody>
-              <tr>
-                  <td class="side">基于机器学习与并行计算的颈动脉斑块稳定性研究</td>
-                  <td class="choiceA">2019.1</td>
-                  <td class="choiceB">2022.12</td>
-                  <td class="choiceC on">国家自然科学基金面上项目</td>
-                  <td class="choiceD">项目负责人</td>
-              </tr>
-              <tr>
-                  <td class="side">海洋动力环境三维温盐大数据分析预报技术</td>
-                  <td class="choiceA">2016.9</td>
-                  <td class="choiceB">2020.12</td>
-                  <td class="choiceC on">科技部国家重点研发计划项目</td>
-                  <td class="choiceD">子课题负责人</td>
-              </tr>
-              <tr>
-                  <td class="side">属性依赖网络的特异性比较算法及应用研究</td>
-                  <td class="choiceA">2017.5</td>
-                  <td class="choiceB">2020.4</td>
-                  <td class="choiceC on">上海市自然科学基金</td>
-                  <td class="choiceD">项目负责人</td>
-              </tr>
-              <tr>
-                  <td class="side">复杂生物分子网络并行搜索算法研究</td>
-                  <td class="choiceA">2012.1</td>
-                  <td class="choiceB">2014.12</td>
-                  <td class="choiceC on">教育部博士点基金</td>
-                  <td class="choiceD">项目负责人</td>
-              </tr>
-              </tbody>
-          </table>
-      </div>
-      <!-- END: .content -->
-      
-      <div id="thesis" class="content">
-        <div class="page_title">
-          <h2><span>论文专利</span></h2>
-        </div>
-          <h3>部分论文专利：</h3>
-          <ul>
-              <li>Jiang Xie, Jiamin Sun, Jiatai Feng, Fuzhang Yang, Jiao Wang, Tieqiao Wen, Qing Nie. Kernel Differential Subgraph Analysis to Reveal the Key Period Affecting Glioblastoma. Biomolecules, 2020, 10 (2), 318 (SCI: ). (JCR 2, JCR Q1; IF: 4.694) ISSN:2218-273x</li>
-              <li>Jiang Xie, Yan Liu, Xu Zeng, Zhen Mei. A Bayesian Network Model for Predicting Type 2 Diabetes Risk Based on Electronic Health Records. Modern Physics Letters B, 2017. 31(19-21):1740055 (SCI: 000406383600056 ) (JCR Q3; IF: 0.929) ISSN: 0217-9849</li>
-              <li>Jiang Xie, Dongfang Lu, Jiaxin Li, Jiao Wang, Yanhui Li, Qing Nie. Kernel differential subgraph reveals dynamic changes in biomolecular networks, Journal of Bioinformatics and Computational Biology, 2018, 16 (1): 1750027: 1-29</li>
-              <li>Jiang Xie, Yan Liu, Xu Zeng, Zhen Mei. A Bayesian Network Model for Predicting Type 2 Diabetes Risk Based on Electronic Health Records. Modern Physics Letters B, 2017. 31(19-21):1740055 (SCI: 000406383600056 ) (JCR Q3; IF: 0.929) ISSN: 0217-9849</li>
-              <li>Jiang Xie, Junfu Xu, Celine Nie, and Qing Nie. Machine Learning of swimming data by wisdom of crowd and regression analysis. Mathematical Biosciences and Engineering, 2017, 14(2): 511-527 (SCI: 000387009900009) 2017.4(JCR Q3; IF:1.313) ISSN: 1547-1063</li>
-              <li>Jiang Xie, Chaojuan Xiang, Jin Ma, Jun Tan, Tieqiao Wen, Jinzhi Lei, Qing Nie. An Adaptive Hybrid Algorithm for Global Network Alignment. IEEE/ACM Transactions on Computational Biology and Bioinformatics, 2016, 13(3): 483-493.</li>
-              <li>Jiang Xie, Chaojuan Xiang, Junfu Xu, Jiao Wang, Wu Zhang. Discovery of Functional Module Alignment. Neurocomputing, 2016, 206: 19-27</li>
-              <li>Shiqing Zhang, Jiang Xie, Ying Xia, Shu Yu, Zhili Gu, Ruili Feng, Guanghong Luo, Dong Wang, Kai Wang, Meng Jiang, Xiao Cheng, Hai Huang, Wu Zhang, Tieqiao Wen. LK6/Mnk2a is a new kinase of alpha synuclein phosphorylation mediating neurodegeneration. Scientific Reports, 5, article number: 12564, 2015</li>
-              <li>Jiao Wang, Qian Wang, Dongfang Lu, Fangfang Zhou, Dong Wang, Ruili Feng, Kai Wang, Robert Molday, Jiang Xie*, Tieqiao Wen, A biosystems approach to identify the molecular signaling mechanisms of TMEM30A during tumor migration, Plos One, 2017, 12(6) :e0179900.</li>
-              <li>Jiao Wang, Qian Li, Yanyan Kong, Fangfang Zhou, Jie Li, Weihao Li, Kai Wang, Ting Wu, Yihui Guan, Jiang Xie*, Biosystems Study of the Molecular Networks Underlying Hippocampal Aging Progression and Anti-aging Treatment in Mice, Frontiers in Aging Neuroscience, 2017, 9.</li>
-              <li>Minchao Wang, Wu Zhang, Wang Ding, Dongbo Dai, Huiran Zhang, Hao Xie, Luonan Chen, Yike Guo,Jiang Xie*. Parallel Clustering Algorithm for Large-scale Biological Data Sets. PLoS ONE，9(4): e91315, 2014</li>
-              <li>Wang Ding, Jiang Xie, Dongbo Dai, Huiran Zhang, Hao Xie, Wu Zhang. CNNcon: Improved Protein Contact Maps Prediction Using Cascaded Neural Networks. PLoS ONE，8 (4): e61533，2013</li>
-              <li>Jiang Xie, Zhonghua Zhou, Kai Lu, Luonan Chen, Wu Zhang. Visualization of Biomolecular Networks’ Comparison on Cytoscape. Tsinghua Science and Technology，18 (5): 515-521, 2013</li>
-              <li>Shangyun Xia, Jiang Xie, Dongbo Dai,Huiran Zhang,Qing Nie,Shigeo Kawata, Wu Zhang. KVM Combined with Hadoop Application based-on CPSE-Bio. Journal of Next Generation Information Technology，4 (3): 160-166, 2013</li>
-              <li>Jiang Xie, Wu Zhang, Shihua Zhang, Tieqiao Wen. A Parallel Method for Querying Target Subnetwork in a Biomolecular Network. International Journal of Numerical Analysis & Modeling，9 (2): 326-337, 2012</li>
-              <li>Shigeo Kawata, Takashi Ishihara, Daisuke Barada, Wu Zhang, Jiang Xie, Hitohide Usami, Takayuki Teramoto, Masami Matsumoto, Yasuhiko Manabe, Yoshikazu Hayase, Tae Whan Kim. Uncertainty Management in Computer Assisted Problem Solving Environment (PSE) for Scientific Computing. Journal of Convergence Information Technology，8 (6): 449-456, 2013</li>
-              <li>文铁桥，顾知立，俞淑，谢江. 一种与帕金森病相关的果蝇源蛋白CG2233及其应用. 专利申请号：200810037700.2</li>
-              <li>谢江，谭军，马进，张武，文铁桥。基于专家知识与拓扑相似的邻居优先生物分子子网搜索方法.专利申请号：201210358669.9</li>
-              <li>张武，张律文，张轶雯，宋安平，谢江，封卫兵. 人工基因调控网络的模拟方法. 专利号: ZL 200910199849.5</li>
-              <li>张武，张律文，肖梅，谢江，宋安平，何冰. 一种逐步回归基因调控网络的推断方法. 专利号: ZL 200910199850.8</li>
-          </ul>
-        <!-- rg-gallery --> 
-      </div>
-      <!-- END: .content -->
-      <div id="contact" class="content">
-
-        <div class="page_title">
-          <h2><span>联系我们</span></h2>
-        </div>
-          <img src="images/contact-us.jpg" alt="" />
-        <div class="contactinfo">
-            地址: 上海市宝山区南陈路333号上海大学计算机工程与科学学院1013室<br>
-            电话: +021-66135539<br>
-            邮箱: <a href="mailto:info@domainname.com">jiangx@shu.edu.cn</a></p>
-        </div>
-          <div id="map_canvas"></div>
-      </div>
-      </section>
-  </div>
+<body id="myzone2">
+<div id="header">
+    <div class="container">
+        <a href="page.html">
+            <img src="self/img/log.jpg" width="200" >
+        </a>
+        <!--//b-topbar:end-->
+    </div>
+    <!--//container:end-->
 </div>
-<!--gallery responsive-->
-<script type="text/javascript" src="js/jquery.tmpl.min.js"></script> 
-<script type="text/javascript" src="js/jquery.easing.1.3.js"></script> 
-<script type="text/javascript" src="js/jquery.elastislide.js"></script> 
-<script type="text/javascript" src="js/gallery.js"></script>
+<!--//header:end-->
+<div class="b-menu">
+    <div class="container">
+        <ul class="clearfix">
+            <li>
+                <a href="# 1">
+                    研究领域</a>
+            </li>
+            <li>
+                <a href="# 2">
+                    社会兼职</a>
+            </li>
+            <li>
+                <a href="# 3">
+                    教授课程</a>
+            </li>
+            <li>
+                <a href="# 4">
+                    出版信息</a>
+            </li>
+            <li>
+                <a href="# 5">
+                    科研项目</a>
+            </li>
+            <li>
+                <a href="# 6">
+                    发表论文</a>
+            </li>
+            <li>
+                <a href="# 7">
+                    软件著作</a>
+            </li>
+            <li>
+                <a href="# 8">
+                    发明专利</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--//b-menu:end-->
 
-<script type="text/javascript">
+<div id="main-content">
+    <div class="container">
+        <div class="b-pinfo">
+            <div class="bp-title" id=" 424050">
+                基本信息</div>
 
-$(document).ready(function(){
-$("#ajax-contact-form").submit(function(){
+            <img class="bp-photo"
+                 src="self/img/3.jpeg" alt="">
+            <div class="bp-enty">
+                <center>
+                    <b>谢江&nbsp;&nbsp;女&nbsp;&nbsp;博导<br>上海大学计算机工程与科学学院<br>
+                </b>
+                </center>
+                电子邮件： jiangx@shu.edu.cn<br>通信地址： 上海市宝山区南陈路333号<br>
+                办公电话： 021-66135539<br>
+                办公地址：计算机大楼1013室</div>
+        </div>
+        <!--//b-pinfo:end-->
 
-var str = $(this).serialize();
+        <div class="m-itme">
+            <h3 class="mi-t">
+							<span id=" 1">
+							研究领域</span>
+            </h3>
+            <div class="mi-box">
+                <div
+                        class="mib-c ">
+                    <p><p><p><p>（1）大规模生物网络建模、比对、聚类以及可视化<br>（2）蛋白质结构预测<br>（3）大数据分析与并行计算<br>（4）复杂疾病风险预测</p><p></p><p></p><p></p><p></p><p></p><p></p></div>
+            </div>
+            <!--//mi-box:end-->
 
-   $.ajax({
-   type: "POST",
-   url: "contact.php",
-   data: str,
-   success: function(msg){
-    
-$("#note").ajaxComplete(function(event, request, settings){
+        </div>
+        <!--//m-itme:end-->
+        <div class="m-itme">
+            <h3 class="mi-t">
+							<span id=" 2">
+							社会兼职</span>
+            </h3>
 
-if(msg == 'OK') // Message Sent? Show the 'Thank You' message and hide the form
-{
-result = '<div class="notification_ok">Your message has been sent. Thank you!</div>';
-$("#fields").hide();
-}
-else
-{
-result = '<ul class="error">'+msg+'</ul>';
-}
+            <!--//mi-box:end-->
 
-$(this).html(result);
+            <div class="mi-box">
+                <div class="mib-c ">
+                    中国计算机学会生物信息学专委会委员<br/>中国计算机学会分布式计算与系统专业委员会常务委员<br/>上海市计算机学会生物信息学专委会秘书长<br/></div>
+            </div>
+            <!--//mi-box:end-->
+        </div>
+        <!--//m-itme:end-->
+        <div class="m-itme">
+            <h3 class="mi-t">
+							<span id=" 3">
+							教授课程</span>
+            </h3>
+            <div class="mi-box">
+                <div
+                        class="mib-c ">
+                    离散数学</br>生物信息学</br></div>
+            </div>
+            <!--//mi-box:end-->
 
-});
+        </div>
+        <!--//m-itme:end-->
+        <div class="m-itme">
+            <h3 class="mi-t">
+							<span id=" 4">
+							出版信息</span>
+            </h3>
+            <div class="mi-box">
+                <div
+                        class="mib-c ">
+                    <p><p><p><strong>Books: <br></strong>1. <strong>Jiang Xie</strong>, Ronald Cools, Craig Douglas, Wu Zhang, <em><u>The Proceedings of International Workshop on Data-Intensive Scientific Discovery and Applications (DISD)</u></em>,上海大学出版社,2014.<br>2. <strong>Jiang Xie</strong>, Zhangxing Chen, Craig C. Douglas, Wu Zhang, Yan Chen, <em><u>High Performance Computing and Applications. Lecture Notes in Computer Science</u></em>, Springer International Publishing, 2016.</p><p><br></p></a></a></p></div>
+            </div>
+            <!--//mi-box:end-->
+        </div>
+        <!--//m-itme:end-->
+        <div class="m-itme">
+            <h3 class="mi-t">
+							<span id=" 5">
+							科研项目</span>
+            </h3>
 
-}
+            <!--//mi-box:end-->
 
- });
+            <div class="mi-box">
+                <div class="mib-c ">
+                    <p>[1]	&nbsp基于机器学习与并行计算的颈动脉斑块稳定性研究, 项目负责人,&nbsp;国家自然科学基金面上项目,&nbsp;2019-01--2022-12</p>
+                    <p>[2]	&nbsp海洋动力环境三维温盐大数据分析预报技术, 子课题负责人,&nbsp;科技部国家重点研发计划项目,&nbsp;2016-09--2020-12</p>
+                    <p>[3]	&nbsp属性依赖网络的特异性比较算法及应用研究, 项目负责人,&nbsp;上海市自然科学基金,&nbsp;2017-05--2020-04</p>
+                    <p>[4]	&nbsp复杂生物分子网络并行搜索算法研究, 项目负责人,&nbsp;教育部博士点基金,&nbsp;2012-01--2014-12</p>
+                </div>
+            </div>
+            <!--//mi-box:end-->
+        </div>
+        <!--//m-itme:end-->
+        <div class="m-itme">
+            <h3 class="mi-t">
+							<span id=" 6">
+							发表论文</span>
+            </h3>
+            <div class="mi-box">
+                <div
+                        class="mib-c ">
+                    <p>[1]	Jiang Xie, Jiamin Sun, Jiatai Feng, Fuzhang Yang, Jiao Wang, Tieqiao Wen, Qing Nie. Kernel Differential Subgraph Analysis to Reveal the Key Period Affecting Glioblastoma. Biomolecules, 2020, 10 (2), 318  ISSN:2218-273x</p>
+                    <p>[2]	Jiang Xie, Chaojuan Xiang, Jin Ma, Jun Tan, Tieqiao Wen, Jinzhi Lei, Qing Nie. An Adaptive Hybrid Algorithm for Global Network Alignment. IEEE/ACM Transactions on Computational Biology and Bioinformatics, 2016, 13(3): 483-493. ISSN:1545-5963</p>
+                    <p>[3]	Jiang Xie, Chaojuan Xiang, Junfu Xu, Jiao Wang, Wu Zhang. Discovery of Functional Module Alignment. Neurocomputing, 2016, 206: 19-27 ISSN:0925-2312</p>
+                    <p>[4]	Shiqing Zhang, Jiang Xie#, Ying Xia, Shu Yu, Zhili Gu, Ruili Feng, Guanghong Luo, Dong Wang, Kai Wang, Meng Jiang, Xiao Cheng, Hai Huang, Wu Zhang, Tieqiao Wen. LK6/Mnk2a is a new kinase of alpha synuclein phosphorylation mediating neurodegeneration. Scientific Reports, 5, article number: 12564, 2015 ISSN: 2045-2322</p>
+                    <p>[5]	Jiao Wang, Qian Li, Yanyan Kong, Fangfang Zhou, Jie Li, Weihao Li, Kai Wang, Ting Wu, Yihui Guan, Jiang Xie*, Biosystems Study of the Molecular Networks Underlying Hippocampal Aging Progression and Anti-aging Treatment in Mice, Frontiers in Aging Neuroscience, 2017, 9. ISSN:1663-4365</p>
+                    <p>[6]	Jiang Xie, Junfu Xu, Celine Nie, and Qing Nie. Machine Learning of swimming data by wisdom of crowd and regression analysis. Mathematical Biosciences and Engineering, 2017, 14(2): 511-527  ISSN: 1547-1063</p>
+                    <p>[7]	Jiang Xie, Yan Liu, Xu Zeng, Zhen Mei. A Bayesian Network Model for Predicting Type 2 Diabetes Risk Based on Electronic Health Records. Modern Physics Letters B, 2017. 31(19-21):1740055  ISSN: 0217-9849</p>
+                    <p>[8]	Jiang Xie, Dongfang Lu, Jiaxin Li, Jiao Wang, Yanhui Li, Qing Nie. Kernel differential subgraph reveals dynamic changes in biomolecular networks, Journal of Bioinformatics and Computational Biology, 2018, 16 (1): 1750027: 1-29  ISSN: 0219-7200</p>
+                    <p>[9]	Jiang Xie, Xu Zeng, Dongfang Lu, Jiao Wang. MHC2NNZ: a novel peptide binding prediction approach for HLA DQ molecules. Modern Physics Letters B, 2017. 31(19-21):1740086   ISSN: 0217-9849</p>
+                    <p>[10]	Jiang Xie, Yan Liu, Zhonghua Zhou, Ruyi Wang, Hong Zhou, Yike Guo, Wu Zhang. A Disease Risk Model for Health Data. Journal of Medical Imaging and Health Informatics, 2017, 7 (3): 536-541 ISSN: 2156-7018</p>
+                    <p>[11]	Jiang Xie, Wang Ding, Luonan Chen, Qiang Guo, Wu Zhang.  Advances in Protein Contact Map Prediction Based on Machine Learning. Medicinal Chemistry, 2015, 11(3): 265-270  ISSN: 1573-4064</p>
+                    <p>[12]	Jiang Xie, Zhonghua Zhou, Jin Ma, Chaojuan Xiang, Qing Nie, Wu Zhang. Graphics Processing Unit-Based Alignment of Protein Interaction Networks. IET Systems Biology, 2015, 9(4): 120-127,  http://digital-library.theiet.org/content/journals/10.1049/iet-syb.2014.0052   ISSN: 1751-8849</p>
+                    <p>[13]	Jiang Xie, Zhonghua Zhou, Kai Lu, Luonan Chen, Wu Zhang. Visualization of Biomolecular Networks’ Comparison on Cytoscape. Tsinghua Science and Technology, 2013, 18 (5): 515-521  ISSN: 1007-0214</p>
+                    <p>[14]	Jiang Xie, Wu Zhang, Shihua Zhang, Tieqiao Wen. A Parallel Method for Querying Target Subnetwork in a Biomolecular Network. International Journal of Numerical Analysis & Modeling, 2012, 9(2): 326-337  ISSN: 1705-5105</p>
+                    </div>
 
-return false;
+            </div>
+            <!--//mi-box:end-->
 
-});
+        </div>
+        <!--//m-itme:end-->
+        <!--//m-itme:end-->
+        <div class="m-itme">
+            <h3 class="mi-t">
+							<span id=" 7">
+							软件著作</span>
+            </h3>
+            <div class="mi-box">
+                <div
+                        class="mib-c ">
+                    <p>[1]	好大夫牙医口腔门诊预约平台V1.0,登记号：2019SR0695104</p>
+                    <p>[2]	大学生体质测试与健康管理分析平台V1.0,登记号：2019SR0695114</p>
+                    <p>[3]	高等院校教职工体检信息管理平台[简称:EPHR] V1.0,登记号：2014SR201296</p>
+                    <p>[4]	高等院校学生健康档案管理平台[简称：EEHR],登记号：2014SR201790</p>
+                    <p>[5]	BNMatch V1.2,登记号：2014SR032801</p>
+                    </div>
+            </div>
+            <!--//mi-box:end-->
 
-});
-</script> 
+        </div>
+        <!--//m-itme:end-->
+        <div class="m-itme">
+            <h3 class="mi-t">
+							<span id=" 8">
+							发明专利</span>
+            </h3>
+            <div class="mi-box">
+                <div
+                        class="mib-c ">
+                    <p>[1]	文铁桥，顾知立，俞淑，谢江. 一种与帕金森病相关的果蝇源蛋白CG2233及其应用. 专利申请号：200810037700.2</p>
+                    <p>[2]	谢江，谭军，马进，张武，文铁桥。基于专家知识与拓扑相似的邻居优先生物分子子网搜索方法.专利申请号：201210358669.9</p>
+                    <p>[3]	张武，张律文，张轶雯，宋安平，谢江，封卫兵. 人工基因调控网络的模拟方法. 专利号: ZL 200910199849.5</p>
+                    <p>[4]	张武，张律文，肖梅，谢江，宋安平，何冰. 一种逐步回归基因调控网络的推断方法. 专利号: ZL 200910199850.8</p>
+                </div>
+            </div>
+            <!--//mi-box:end-->
+
+        </div>
+    </div>
+    <!--//container:end-->
+</div>
+<!--//main-content:end-->
 
 
+<div id="footer">
+    <div class="container">2020 &copy; 上海大学，计算机工程与科学学院，生物信息学课题组.</div>
+    <!--//container:end-->
+</div>
+<!--//footer:end-->
+
+<!--// Loading JS -->
+
+<!--common script for all pages-->
+
+<!--script for this page only-->
+
+<!--// JS End -->
 </body>
 </html>
